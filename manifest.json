@@ -1,0 +1,15 @@
+{
+  "name": "JB's Divisas",
+  "short_name": "JB Divisas",
+  "description": "Conversor y tracker de divisas en tiempo real",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EAF6F4",
+  "theme_color": "#00C9A7",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
