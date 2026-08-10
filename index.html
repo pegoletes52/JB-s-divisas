@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="es" data-jb-theme="mint">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>JB's Divisas</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00C9A7">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JB's Divisas">
+<style>
+:root[data-jb-theme="mint"]{--jb-bg:#EAF6F4;--jb-surface:#FFFFFF;--jb-accent-1:#00C9A7;--jb-accent-2:#00E0A0;--jb-text:#0F2A26;--jb-text-2:#4A6A64;}
+:root[data-jb-theme="ocean"]{--jb-bg:#E8F4FB;--jb-surface:#FFFFFF;--jb-accent-1:#0EA5E9;--jb-accent-2:#06B6D4;--jb-text:#0C2733;--jb-text-2:#4A6B78;}
+:root[data-jb-theme="sage"]{--jb-bg:#EFF5EC;--jb-surface:#FFFFFF;--jb-accent-1:#6BA368;--jb-accent-2:#A3D9A5;--jb-text:#1E2E1B;--jb-text-2:#57634F;}
+:root[data-jb-theme="teal"]{--jb-bg:#E6F7F6;--jb-surface:#FFFFFF;--jb-accent-1:#009688;--jb-accent-2:#26C6DA;--jb-text:#0B2C2A;--jb-text-2:#476662;}
+:root[data-jb-theme="coral"]{--jb-bg:#FFF1EC;--jb-surface:#FFFFFF;--jb-accent-1:#FF6B5B;--jb-accent-2:#FF9472;--jb-text:#3A1712;--jb-text-2:#7A5148;}
+:root[data-jb-theme="lavanda"]{--jb-bg:#F3EFFB;--jb-surface:#FFFFFF;--jb-accent-1:#8B5CF6;--jb-accent-2:#C084FC;--jb-text:#241A3D;--jb-text-2:#5F5375;}
+:root[data-jb-theme="noche"]{--jb-bg:#121826;--jb-surface:#1E2536;--jb-accent-1:#00E0A0;--jb-accent-2:#26C6DA;--jb-text:#EDEFF5;--jb-text-2:#9AA3B8;}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+body{margin:0;background:var(--jb-bg);color:var(--jb-text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:17px;transition:background 300ms ease;padding-bottom:20px;}
+
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:color-mix(in srgb, var(--jb-bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb, var(--jb-accent-1) 20%, transparent);}
+.jb-logo{display:flex;align-items:center;gap:10px;}
+.jb-logo-dot{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,var(--jb-accent-1),var(--jb-accent-2));display:flex;align-items:center;justify-content:center;font-size:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5), inset 0 -3px 6px rgba(0,0,0,.15), 0 4px 14px color-mix(in srgb, var(--jb-accent-1) 45%, transparent);}
+.jb-title-gradient{background:linear-gradient(135deg,var(--jb-accent-1),var(--jb-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;font-size:19px;}
+.theme-picker{display:flex;align-items:center;gap:7px;}
+.t-dot{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:transform 200ms ease;}
+.t-dot.active{border-color:var(--jb-text);transform:scale(1.15);}
+.t-dot:active{transform:scale(0.9);}
+.t-mint{background:linear-gradient(135deg,#00C9A7,#00E0A0);}
+.t-ocean{background:linear-gradient(135deg,#0EA5E9,#06B6D4);}
+.t-sage{background:linear-gradient(135deg,#6BA368,#A3D9A5);}
+.t-teal{background:linear-gradient(135deg,#009688,#26C6DA);}
+.t-coral{background:linear-gradient(135deg,#FF6B5B,#FF9472);}
+.t-lavanda{background:linear-gradient(135deg,#8B5CF6,#C084FC);}
+.t-noche{background:#121826;color:#EDEFF5;display:flex;align-items:center;justify-content:center;font-size:11px;}
+
+main{max-width:480px;margin:0 auto;padding:16px;display:flex;flex-direction:column;gap:16px;}
+
+.jb-card{
+  background:linear-gradient(160deg, color-mix(in srgb, var(--jb-surface) 100%, white 0%), color-mix(in srgb, var(--jb-surface) 92%, var(--jb-accent-1) 8%));
+  border-radius:20px;
+  border:1px solid color-mix(in srgb, var(--jb-accent-1) 28%, transparent);
+  box-shadow:
+    inset 0 1.5px 0 color-mix(in srgb, var(--jb-accent-2) 45%, white 55%),
+    inset 0 -14px 22px -18px rgba(0,0,0,.35),
+    0 2px 4px rgba(0,0,0,.05),
+    0 22px 40px -16px rgba(0,0,0,.22);
+  padding:18px;
+  animation:jbFadeSlideIn 400ms ease-out;
+  transition:box-shadow 250ms ease, transform 250ms ease;
+}
+
+@keyframes jbFadeSlideIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes jbPulse{0%{transform:scale(1);}50%{transform:scale(0.97);}100%{transform:scale(1);}}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.conv-row{display:flex;align-items:center;gap:10px;}
+.curr-box{flex:1;position:relative;}
+.curr-btn{width:100%;display:flex;align-items:center;gap:8px;background:var(--jb-bg);border:1.5px solid color-mix(in srgb, var(--jb-accent-1) 25%, transparent);border-radius:12px;padding:10px 12px;cursor:pointer;font-size:16px;font-weight:700;color:var(--jb-text);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.06), inset 0 -1px 0 color-mix(in srgb, var(--jb-accent-2) 30%, white 70%), 0 3px 6px rgba(0,0,0,.05);
+  transition:border-color 200ms ease, box-shadow 200ms ease, transform 150ms ease;}
+.curr-btn:active{transform:scale(0.97);}
+.curr-btn:focus,.curr-btn.open{border-color:var(--jb-accent-1);box-shadow:inset 0 2px 5px rgba(0,0,0,.06), 0 0 12px color-mix(in srgb, var(--jb-accent-1) 40%, transparent);}
+.flag{font-size:22px;}
+.swap-btn{width:42px;height:42px;min-width:42px;border-radius:50%;background:linear-gradient(135deg,var(--jb-accent-1),var(--jb-accent-2));border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 200ms ease, box-shadow 200ms ease;}
+.swap-btn:hover{transform:scale(1.08) rotate(180deg);box-shadow:0 0 18px color-mix(in srgb, var(--jb-accent-1) 50%, transparent);}
+.swap-btn:active{animation:jbPulse 350ms ease;}
+
+.amount-wrap{margin-top:14px;}
+.amount-wrap label{font-size:13px;color:var(--jb-text-2);font-weight:600;text-transform:uppercase;letter-spacing:.4px;}
+.jb-input{width:100%;background:var(--jb-bg);border:1.5px solid color-mix(in srgb, var(--jb-accent-1) 25%, transparent);border-radius:12px;padding:12px 14px;font-size:22px;font-weight:700;color:var(--jb-text);margin-top:6px;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.07), inset 0 -1px 0 color-mix(in srgb, var(--jb-accent-2) 30%, white 70%);
+  transition:border-color 200ms ease, box-shadow 200ms ease;}
+.jb-input:focus{outline:none;border-color:var(--jb-accent-1);box-shadow:inset 0 2px 6px rgba(0,0,0,.07), 0 0 12px color-mix(in srgb, var(--jb-accent-1) 40%, transparent);}
+
+.result-box{margin-top:14px;text-align:center;padding:16px;border-radius:16px;background:linear-gradient(160deg, color-mix(in srgb, var(--jb-accent-1) 16%, var(--jb-surface)), color-mix(in srgb, var(--jb-accent-2) 10%, var(--jb-surface)));
+  border:1px solid color-mix(in srgb, var(--jb-accent-1) 25%, transparent);
+  box-shadow:inset 0 1.5px 0 color-mix(in srgb, var(--jb-accent-2) 40%, white 60%), inset 0 -10px 18px -16px rgba(0,0,0,.3), 0 10px 20px -10px rgba(0,0,0,.15);}
+.result-value{font-size:34px;font-weight:800;background:linear-gradient(135deg,var(--jb-accent-1),var(--jb-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;word-break:break-all;}
+.result-sub{font-size:13px;color:var(--jb-text-2);margin-top:4px;}
+
+.fav-row{display:flex;justify-content:space-between;align-items:center;}
+.fav-star{background:none;border:none;font-size:22px;cursor:pointer;transition:transform 200ms ease;}
+.fav-star:active{transform:scale(1.3);}
+.fav-list{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+.fav-chip{justify-content:space-between;}
+.fav-chip{display:flex;align-items:center;gap:6px;background:var(--jb-bg);border:1px solid color-mix(in srgb, var(--jb-accent-1) 25%, transparent);border-radius:20px;padding:7px 12px;font-size:14px;font-weight:600;cursor:pointer;
+  box-shadow:inset 0 1px 0 color-mix(in srgb, var(--jb-accent-2) 35%, white 65%), 0 3px 8px rgba(0,0,0,.06);
+  transition:transform 200ms ease, box-shadow 200ms ease;}
+.fav-chip:active{transform:scale(0.95);box-shadow:inset 0 2px 4px rgba(0,0,0,.1);}
+.fav-chip .rm{opacity:.5;font-size:12px;margin-left:2px;}
+.fav-curr{display:inline-flex;align-items:center;gap:4px;padding:2px 4px;border-radius:6px;}
+.fav-curr:active{background:color-mix(in srgb, var(--jb-accent-1) 15%, transparent);}
+.fav-swap{padding:0 2px;opacity:.6;}
+.fav-swap:active{opacity:1;}
+.fav-drag{cursor:grab;padding:2px 6px;color:var(--jb-text-2);font-size:15px;opacity:.55;touch-action:none;user-select:none;}
+.fav-chip.dragging{transition:none;box-shadow:0 10px 20px rgba(0,0,0,.18);z-index:20;position:relative;background:var(--jb-surface);}
+.empty-note{font-size:14px;color:var(--jb-text-2);}
+
+.chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.period-picker{display:flex;gap:6px;flex-wrap:wrap;}
+.p-btn{background:var(--jb-bg);border:1px solid color-mix(in srgb, var(--jb-accent-1) 25%, transparent);border-radius:9px;padding:5px 10px;font-size:12px;font-weight:700;cursor:pointer;color:var(--jb-text-2);
+  box-shadow:inset 0 1px 0 color-mix(in srgb, var(--jb-accent-2) 30%, white 70%), 0 2px 5px rgba(0,0,0,.05);
+  transition:transform 150ms ease, box-shadow 150ms ease;}
+.p-btn:active{transform:scale(0.94);}
+.p-btn.active{background:linear-gradient(135deg,var(--jb-accent-1),var(--jb-accent-2));color:#fff;border-color:transparent;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4), inset 0 -3px 6px rgba(0,0,0,.15), 0 4px 10px color-mix(in srgb, var(--jb-accent-1) 40%, transparent);}
+canvas{width:100%;height:190px;display:block;}
+#chart{margin-left:-4px;}
+
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.dash-card.wide{grid-column:1 / -1;}
+.dash-card.wide .dash-spark{height:44px;}
+.dash-card{
+  background:linear-gradient(160deg, color-mix(in srgb, var(--jb-bg) 100%, white 20%), var(--jb-bg));
+  border-radius:16px;padding:12px;cursor:pointer;border:1px solid color-mix(in srgb, var(--jb-accent-1) 22%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--jb-accent-2) 40%, white 60%),
+    0 2px 3px rgba(0,0,0,.04),
+    0 10px 18px -10px rgba(0,0,0,.18);
+  transition:transform 180ms ease, box-shadow 180ms ease;
+}
+.dash-card:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 color-mix(in srgb, var(--jb-accent-2) 40%, white 60%), 0 14px 24px -10px rgba(0,0,0,.22);}
+.dash-card:active{transform:perspective(500px) rotateX(3deg) scale(0.96);box-shadow:inset 0 4px 8px rgba(0,0,0,.12);}
+.dash-top{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;color:var(--jb-text-2);}
+.dash-rate{font-size:19px;font-weight:800;margin-top:6px;}
+.dash-change{font-size:12px;font-weight:700;margin-top:2px;}
+.dash-change.up{color:#1a9c6b;}
+.dash-change.down{color:#e0503f;}
+.dash-spark{width:100%;height:32px;display:block;margin-top:6px;}
+.offline-badge{font-size:11px;font-weight:700;color:var(--jb-text-2);background:color-mix(in srgb, var(--jb-accent-1) 12%, transparent);border-radius:6px;padding:2px 6px;display:inline-block;margin-top:4px;}
+
+h3{margin:0 0 4px 0;font-size:15px;text-transform:uppercase;letter-spacing:.4px;color:var(--jb-text-2);}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:100;display:none;align-items:flex-end;justify-content:center;}
+.overlay.show{display:flex;}
+
+.expand-btn{background:var(--jb-bg);border:1px solid color-mix(in srgb, var(--jb-accent-1) 25%, transparent);border-radius:8px;width:28px;height:28px;font-size:14px;color:var(--jb-text-2);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.dash-expand{position:absolute;top:10px;right:10px;background:color-mix(in srgb, var(--jb-surface) 70%, transparent);border:none;border-radius:6px;width:24px;height:24px;font-size:12px;color:var(--jb-text-2);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.dash-card{position:relative;}
+
+.chart-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:110;display:none;align-items:center;justify-content:center;padding:16px;}
+.chart-modal-overlay.show{display:flex;}
+.chart-modal{background:var(--jb-surface);border-radius:20px;padding:18px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:jbFadeSlideIn 250ms ease-out;}
+.chart-modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.chart-modal-title{font-size:19px;font-weight:800;background:linear-gradient(135deg,var(--jb-accent-1),var(--jb-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.modal-close{background:var(--jb-bg);border:none;border-radius:50%;width:32px;height:32px;font-size:15px;color:var(--jb-text-2);cursor:pointer;}
+#chartModalCanvas{width:100%;height:280px;display:block;}
+.sheet{background:var(--jb-surface);width:100%;max-width:480px;border-radius:20px 20px 0 0;max-height:75vh;display:flex;flex-direction:column;animation:jbFadeSlideIn 250ms ease-out;}
+.sheet-head{padding:16px 16px 8px;}
+.sheet-search{width:100%;background:var(--jb-bg);border:1.5px solid color-mix(in srgb, var(--jb-accent-1) 25%, transparent);border-radius:12px;padding:11px 14px;font-size:16px;color:var(--jb-text);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.07);}
+.sheet-search:focus{outline:none;border-color:var(--jb-accent-1);box-shadow:inset 0 2px 6px rgba(0,0,0,.07), 0 0 12px color-mix(in srgb, var(--jb-accent-1) 35%, transparent);}
+.sheet{box-shadow:0 -12px 40px rgba(0,0,0,.25);}
+.sheet-list{overflow-y:auto;padding:6px 8px 20px;}
+.sheet-item{display:flex;align-items:center;gap:12px;padding:12px 10px;border-radius:12px;cursor:pointer;}
+.sheet-item:active{background:var(--jb-bg);}
+.sheet-item .code{font-weight:800;font-size:15px;min-width:46px;}
+.sheet-item .name{color:var(--jb-text-2);font-size:14px;}
+
+.status-line{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--jb-text-2);justify-content:center;}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--jb-accent-1);animation:blink 1.6s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.spinner{width:16px;height:16px;border:2px solid color-mix(in srgb, var(--jb-accent-1) 30%, transparent);border-top-color:var(--jb-accent-1);border-radius:50%;animation:spin .7s linear infinite;}
+
+footer{text-align:center;padding:30px 16px 10px;margin-top:10px;}
+.jb-signature{display:inline-block;font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.6px;background:linear-gradient(135deg,var(--jb-accent-1),var(--jb-accent-2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+@media (prefers-reduced-motion: reduce){.jb-card,.swap-btn,.t-dot,.fav-chip,.dash-card,.p-btn,.curr-btn{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="jb-logo">
+    <div class="jb-logo-dot">💱</div>
+    <div class="jb-title-gradient">JB's Divisas</div>
+  </div>
+  <div class="theme-picker" id="themePicker">
+    <div class="t-dot t-mint active" data-theme="mint" title="Mint"></div>
+    <div class="t-dot t-ocean" data-theme="ocean" title="Ocean"></div>
+    <div class="t-dot t-sage" data-theme="sage" title="Sage"></div>
+    <div class="t-dot t-teal" data-theme="teal" title="Teal"></div>
+    <div class="t-dot t-coral" data-theme="coral" title="Coral"></div>
+    <div class="t-dot t-lavanda" data-theme="lavanda" title="Lavanda"></div>
+    <div class="t-dot t-noche" data-theme="noche" title="Noche">🌙</div>
+  </div>
+</header>
+
+<main>
+
+  <section class="jb-card">
+    <div class="fav-row">
+      <h3 style="margin:0;">Tu dashboard</h3>
+      <span class="empty-note" id="dashUpdated"></span>
+    </div>
+    <div class="dash-grid" id="dashGrid"></div>
+  </section>
+
+  <section class="jb-card">
+    <div class="amount-wrap">
+      <label>Cantidad</label>
+      <input class="jb-input" id="amountInput" type="number" inputmode="decimal" value="1" min="0" step="any">
+    </div>
+
+    <div class="conv-row" style="margin-top:14px;">
+      <div class="curr-box">
+        <button class="curr-btn" id="fromBtn" type="button"></button>
+      </div>
+      <button class="swap-btn" id="swapBtn" title="Invertir">⇄</button>
+      <div class="curr-box">
+        <button class="curr-btn" id="toBtn" type="button"></button>
+      </div>
+    </div>
+
+    <div class="result-box">
+      <div class="result-value" id="resultValue">—</div>
+      <div class="result-sub" id="resultSub">Calculando...</div>
+    </div>
+
+    <div class="status-line" id="statusLine" style="margin-top:12px;">
+      <div class="spinner"></div><span>Consultando tasa en vivo…</span>
+    </div>
+  </section>
+
+  <section class="jb-card">
+    <div class="fav-row">
+      <h3 style="margin:0;">Favoritos</h3>
+      <button class="fav-star" id="favStar" title="Guardar par actual">☆</button>
+    </div>
+    <div class="fav-list" id="favList"></div>
+  </section>
+
+  <section class="jb-card">
+    <div class="chart-head">
+      <h3 style="margin:0;">Últimos días</h3>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="expand-btn" id="expandMainChart" title="Ver en pantalla completa">⛶</button>
+        <div class="period-picker" id="periodPicker">
+          <button class="p-btn" data-days="7">7D</button>
+          <button class="p-btn active" data-days="30">30D</button>
+          <button class="p-btn" data-days="90">90D</button>
+          <button class="p-btn" data-days="365">1A</button>
+        </div>
+      </div>
+    </div>
+    <div class="period-picker" id="comparePicker" style="margin-bottom:8px;">
+      <button class="p-btn active" data-cmp="none">Sin comparar</button>
+      <button class="p-btn" data-cmp="prev">vs anterior</button>
+      <button class="p-btn" data-cmp="year">vs año pasado</button>
+    </div>
+    <div class="empty-note" id="chartRange" style="margin-bottom:6px;"></div>
+    <canvas id="chart" width="600" height="150"></canvas>
+    <div class="empty-note" id="chartCompareLegend" style="margin-top:8px;"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="jb-signature">✨ JB Design System v2</div>
+</footer>
+
+<div class="overlay" id="overlay">
+  <div class="sheet">
+    <div class="sheet-head">
+      <input class="sheet-search" id="sheetSearch" placeholder="Buscar moneda o código...">
+    </div>
+    <div class="sheet-list" id="sheetList"></div>
+  </div>
+</div>
+
+<div class="chart-modal-overlay" id="chartModalOverlay">
+  <div class="chart-modal">
+    <div class="chart-modal-head">
+      <div class="chart-modal-title" id="modalTitle">EUR→USD</div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="period-picker" id="modalPeriodPicker">
+      <button class="p-btn" data-days="7">7D</button>
+      <button class="p-btn active" data-days="30">30D</button>
+      <button class="p-btn" data-days="90">90D</button>
+      <button class="p-btn" data-days="365">1A</button>
+    </div>
+    <div class="period-picker" id="modalComparePicker" style="margin-bottom:8px;">
+      <button class="p-btn active" data-cmp="none">Sin comparar</button>
+      <button class="p-btn" data-cmp="prev">vs anterior</button>
+      <button class="p-btn" data-cmp="year">vs año pasado</button>
+    </div>
+    <div class="empty-note" id="modalRange" style="margin-bottom:6px;"></div>
+    <canvas id="chartModalCanvas" width="600" height="360"></canvas>
+    <div class="empty-note" id="modalCompareLegend" style="margin-top:8px;"></div>
+  </div>
+</div>
+
+
+<script>
+const FLAGS = {USD:"🇺🇸",EUR:"🇪🇺",BRL:"🇧🇷",MXN:"🇲🇽",DOP:"🇩🇴",GBP:"🇬🇧",JPY:"🇯🇵",CHF:"🇨🇭",CAD:"🇨🇦",AUD:"🇦🇺",CNY:"🇨🇳",INR:"🇮🇳",KRW:"🇰🇷",SEK:"🇸🇪",NOK:"🇳🇴",DKK:"🇩🇰",PLN:"🇵🇱",CZK:"🇨🇿",HUF:"🇭🇺",RON:"🇷🇴",TRY:"🇹🇷",ZAR:"🇿🇦",SGD:"🇸🇬",HKD:"🇭🇰",NZD:"🇳🇿",THB:"🇹🇭",ILS:"🇮🇱",PHP:"🇵🇭",IDR:"🇮🇩",MYR:"🇲🇾",ISK:"🇮🇸",BGN:"🇧🇬",HRK:"🇭🇷"};
+
+const state = {
+  currencies: {},
+  from: localStorage.getItem('jbdiv_from') || 'USD',
+  to: localStorage.getItem('jbdiv_to') || 'EUR',
+  amount: 1,
+  favorites: JSON.parse(localStorage.getItem('jbdiv_favs') || '[]'),
+  pickerTarget: null,
+  editingFavIdx: null,
+  days: 30,
+  compareMode: 'none',
+  rate: null
+};
+
+const modal = {
+  from: 'EUR', to: 'USD', days: 30, compareMode: 'none'
+};
+
+const $ = id => document.getElementById(id);
+
+// ---------- CACHE (modo offline) ----------
+function cacheSet(key, data){
+  try{ localStorage.setItem('jbdiv_cache_'+key, JSON.stringify({data, ts: Date.now()})); }catch(e){}
+}
+function cacheGet(key){
+  try{
+    const raw = localStorage.getItem('jbdiv_cache_'+key);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+function timeAgo(ts){
+  const mins = Math.round((Date.now()-ts)/60000);
+  if(mins < 1) return 'justo ahora';
+  if(mins < 60) return `hace ${mins} min`;
+  const hrs = Math.round(mins/60);
+  if(hrs < 24) return `hace ${hrs} h`;
+  return `hace ${Math.round(hrs/24)} d`;
+}
+
+// ---------- THEME ----------
+function initTheme(){
+  const saved = localStorage.getItem('jbdiv_theme') || 'mint';
+  setTheme(saved);
+  $('themePicker').addEventListener('click', e=>{
+    const d = e.target.closest('.t-dot');
+    if(!d) return;
+    setTheme(d.dataset.theme);
+  });
+}
+function setTheme(name){
+  document.documentElement.setAttribute('data-jb-theme', name);
+  localStorage.setItem('jbdiv_theme', name);
+  document.querySelectorAll('.t-dot').forEach(d=>d.classList.toggle('active', d.dataset.theme===name));
+  if(state.history) drawChart($('chart'), state.history);
+  if($('chartModalOverlay').classList.contains('show')) loadModalChart();
+  if(state.favorites && state.favorites.length) dashLoadAll();
+}
+
+// ---------- CURRENCY PICKER ----------
+function renderCurrBtn(which){
+  const code = state[which];
+  const flag = FLAGS[code] || '💰';
+  $(which+'Btn').innerHTML = `<span class="flag">${flag}</span><span>${code}</span>`;
+}
+
+function openPicker(target, favIdx){
+  state.pickerTarget = target;
+  state.editingFavIdx = (favIdx !== undefined) ? favIdx : null;
+  $('sheetSearch').value = '';
+  renderSheetList('');
+  $('overlay').classList.add('show');
+  setTimeout(()=>$('sheetSearch').focus(), 50);
+}
+function closePicker(){ $('overlay').classList.remove('show'); state.editingFavIdx = null; }
+
+function renderSheetList(filter){
+  const f = filter.trim().toUpperCase();
+  const list = $('sheetList');
+  list.innerHTML = '';
+  const entries = Object.entries(state.currencies);
+  const filtered = entries.filter(([code,name])=>
+    code.includes(f) || name.toUpperCase().includes(f)
+  );
+  if(filtered.length===0){
+    list.innerHTML = '<div class="empty-note" style="padding:16px;">Sin resultados.</div>';
+    return;
+  }
+  filtered.forEach(([code,name])=>{
+    const el = document.createElement('div');
+    el.className = 'sheet-item';
+    el.innerHTML = `<span class="flag">${FLAGS[code]||'💰'}</span><span class="code">${code}</span><span class="name">${name}</span>`;
+    el.addEventListener('click', ()=>{
+      if(state.editingFavIdx !== null){
+        const idx = state.editingFavIdx;
+        const [f2,t2] = state.favorites[idx].split('-');
+        const updated = state.pickerTarget === 'from' ? `${code}-${t2}` : `${f2}-${code}`;
+        state.favorites[idx] = updated;
+        localStorage.setItem('jbdiv_favs', JSON.stringify(state.favorites));
+        closePicker();
+        renderFavs();
+        dashLoadAll();
+        return;
+      }
+      state[state.pickerTarget] = code;
+      localStorage.setItem('jbdiv_'+state.pickerTarget, code);
+      renderCurrBtn(state.pickerTarget);
+      closePicker();
+      updateFavStar();
+      convert();
+      loadHistory();
+    });
+    list.appendChild(el);
+  });
+}
+
+// ---------- CONVERT ----------
+let convertTimer = null;
+function scheduleConvert(){
+  clearTimeout(convertTimer);
+  convertTimer = setTimeout(convert, 350);
+}
+
+async function convert(){
+  const amount = parseFloat($('amountInput').value) || 0;
+  state.amount = amount;
+  const cacheKey = `rate_${state.from}_${state.to}`;
+  setStatus('loading', 'Consultando tasa en vivo…');
+  try{
+    const res = await fetch(`https://api.frankfurter.dev/v1/latest?base=${state.from}&symbols=${state.to}`);
+    if(!res.ok) throw new Error('api');
+    const data = await res.json();
+    state.rate = data.rates[state.to];
+    const value = state.rate * amount;
+    cacheSet(cacheKey, {rate: state.rate});
+    $('resultValue').textContent = formatNum(value) + ' ' + state.to;
+    $('resultSub').textContent = `1 ${state.from} = ${formatNum(state.rate)} ${state.to}`;
+    setStatus('live', 'Tasa en vivo · Frankfurter (BCE)');
+  }catch(err){
+    const cached = cacheGet(cacheKey);
+    if(cached){
+      state.rate = cached.data.rate;
+      const value = state.rate * amount;
+      $('resultValue').textContent = formatNum(value) + ' ' + state.to;
+      $('resultSub').textContent = `1 ${state.from} = ${formatNum(state.rate)} ${state.to} (guardado ${timeAgo(cached.ts)})`;
+      setStatus('error', `Sin conexión · mostrando último dato guardado ${timeAgo(cached.ts)}`);
+    } else {
+      setStatus('error', 'Sin conexión. Verifica tu internet.');
+      $('resultSub').textContent = 'Si tienes internet y sigue fallando, prueba a subir el archivo a tu web (GitHub Pages) en vez de abrirlo suelto.';
+    }
+  }
+}
+
+function formatNum(n){
+  if(n === undefined || n === null || isNaN(n)) return '—';
+  const abs = Math.abs(n);
+  const decimals = abs >= 100 ? 2 : abs >= 1 ? 4 : 6;
+  return n.toLocaleString('es-ES', {maximumFractionDigits: decimals, minimumFractionDigits: 2});
+}
+
+function setStatus(kind, text){
+  const line = $('statusLine');
+  if(kind === 'loading'){
+    line.innerHTML = `<div class="spinner"></div><span>${text}</span>`;
+  } else if(kind === 'live'){
+    line.innerHTML = `<div class="dot-live"></div><span>${text}</span>`;
+  } else {
+    line.innerHTML = `<span>⚠️ ${text}</span> <a href="#" id="statusRetry" style="color:var(--jb-accent-1);font-weight:700;">reintentar</a>`;
+    const link = $('statusRetry');
+    if(link) link.addEventListener('click', (e)=>{ e.preventDefault(); convert(); loadHistory(); });
+  }
+}
+
+// ---------- SWAP ----------
+function swap(){
+  const f = state.from, t = state.to;
+  state.from = t; state.to = f;
+  localStorage.setItem('jbdiv_from', state.from);
+  localStorage.setItem('jbdiv_to', state.to);
+  renderCurrBtn('from'); renderCurrBtn('to');
+  updateFavStar();
+  convert();
+  loadHistory();
+}
+
+// ---------- FAVORITES ----------
+function pairKey(){ return state.from + '-' + state.to; }
+function updateFavStar(){
+  const isFav = state.favorites.includes(pairKey());
+  $('favStar').textContent = isFav ? '★' : '☆';
+}
+function toggleFav(){
+  const key = pairKey();
+  const idx = state.favorites.indexOf(key);
+  if(idx >= 0) state.favorites.splice(idx,1);
+  else state.favorites.push(key);
+  localStorage.setItem('jbdiv_favs', JSON.stringify(state.favorites));
+  updateFavStar();
+  renderFavs();
+  dashLoadAll();
+}
+function renderFavs(){
+  const list = $('favList');
+  list.innerHTML = '';
+  if(state.favorites.length === 0){
+    list.innerHTML = '<div class="empty-note">Toca ☆ para guardar un par de monedas.</div>';
+    return;
+  }
+  state.favorites.forEach((key, idx)=>{
+    const [f,t] = key.split('-');
+    const chip = document.createElement('div');
+    chip.className = 'fav-chip';
+    chip.dataset.key = key;
+    chip.innerHTML = `
+      <span class="fav-drag" title="Arrastrar">⠿</span>
+      <span class="fav-curr" data-idx="${idx}" data-side="from"><span class="flag">${FLAGS[f]||'💰'}</span>${f}</span><span class="fav-swap" data-idx="${idx}" title="Doble toque para invertir">→</span><span class="fav-curr" data-idx="${idx}" data-side="to">${t}<span class="flag">${FLAGS[t]||'💰'}</span></span>
+      <span class="rm" data-key="${key}">✕</span>`;
+    chip.querySelectorAll('.fav-curr').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        openPicker(el.dataset.side, parseInt(el.dataset.idx));
+      });
+    });
+    chip.querySelector('.fav-drag').addEventListener('pointerdown', e=>startFavDrag(e, chip));
+    chip.querySelector('.fav-swap').addEventListener('dblclick', (e)=>{
+      e.stopPropagation();
+      const swapIdx = parseInt(e.currentTarget.dataset.idx);
+      const [f2,t2] = state.favorites[swapIdx].split('-');
+      state.favorites[swapIdx] = `${t2}-${f2}`;
+      localStorage.setItem('jbdiv_favs', JSON.stringify(state.favorites));
+      renderFavs();
+      dashLoadAll();
+    });
+    chip.addEventListener('click', (e)=>{
+      if(e.target.classList.contains('rm')){
+        state.favorites = state.favorites.filter(k=>k!==key);
+        localStorage.setItem('jbdiv_favs', JSON.stringify(state.favorites));
+        renderFavs();
+        dashLoadAll();
+        return;
+      }
+      if(e.target.closest('.fav-curr')) return;
+      if(e.target.closest('.fav-drag')) return;
+      if(e.target.closest('.fav-swap')) return;
+      state.from = f; state.to = t;
+      localStorage.setItem('jbdiv_from', f);
+      localStorage.setItem('jbdiv_to', t);
+      renderCurrBtn('from'); renderCurrBtn('to');
+      updateFavStar();
+      convert();
+      loadHistory();
+    });
+    list.appendChild(chip);
+  });
+}
+
+// ---------- DRAG TO REORDER FAVORITES ----------
+let favDrag = null;
+
+function startFavDrag(e, chip){
+  e.preventDefault();
+  const list = $('favList');
+  favDrag = {
+    chip,
+    startY: e.clientY,
+    list
+  };
+  chip.classList.add('dragging');
+  document.addEventListener('pointermove', onFavDragMove);
+  document.addEventListener('pointerup', onFavDragEnd, {once:true});
+}
+
+function onFavDragMove(e){
+  if(!favDrag) return;
+  const dy = e.clientY - favDrag.startY;
+  favDrag.chip.style.transform = `translateY(${dy}px)`;
+
+  const siblings = [...favDrag.list.children];
+  const draggedRect = favDrag.chip.getBoundingClientRect();
+  const draggedMid = draggedRect.top + draggedRect.height/2;
+
+  for(const sib of siblings){
+    if(sib === favDrag.chip) continue;
+    const r = sib.getBoundingClientRect();
+    const mid = r.top + r.height/2;
+    if(draggedMid > mid && favDrag.chip.nextElementSibling === sib){
+      favDrag.list.insertBefore(sib, favDrag.chip);
+      favDrag.startY = e.clientY;
+      favDrag.chip.style.transform = 'translateY(0px)';
+      break;
+    } else if(draggedMid < mid && favDrag.chip.previousElementSibling === sib){
+      favDrag.list.insertBefore(favDrag.chip, sib);
+      favDrag.startY = e.clientY;
+      favDrag.chip.style.transform = 'translateY(0px)';
+      break;
+    }
+  }
+}
+
+function onFavDragEnd(){
+  document.removeEventListener('pointermove', onFavDragMove);
+  if(!favDrag) return;
+  favDrag.chip.style.transform = '';
+  favDrag.chip.classList.remove('dragging');
+  const newOrder = [...favDrag.list.children].map(c => c.dataset.key);
+  state.favorites = newOrder;
+  localStorage.setItem('jbdiv_favs', JSON.stringify(state.favorites));
+  favDrag = null;
+  renderFavs();
+  dashLoadAll();
+}
+
+function seedDefaultFavorites(){
+  if(localStorage.getItem('jbdiv_seeded')) return;
+  if(state.favorites.length === 0){
+    state.favorites = ['EUR-USD','EUR-BRL','EUR-MXN','EUR-DOP'];
+    localStorage.setItem('jbdiv_favs', JSON.stringify(state.favorites));
+  }
+  localStorage.setItem('jbdiv_seeded', '1');
+}
+
+// ---------- DASHBOARD ----------
+async function dashLoadAll(){
+  const grid = $('dashGrid');
+  const pairs = state.favorites.slice(0,4);
+  if(pairs.length === 0){
+    grid.innerHTML = '<div class="empty-note">Guarda hasta 4 pares favoritos (☆) para verlos aquí.</div>';
+    $('dashUpdated').textContent = '';
+    return;
+  }
+  grid.innerHTML = pairs.map((k,i)=>`
+    <div class="dash-card${pairs.length===3 && i===2 ? ' wide' : ''}" data-key="${k}" data-idx="${i}">
+      <button class="dash-expand" data-key="${k}" title="Ver en pantalla completa">⛶</button>
+      <div class="dash-top"><span>${FLAGS[k.split('-')[0]]||'💰'} ${k.split('-')[0]}→${k.split('-')[1]} ${FLAGS[k.split('-')[1]]||'💰'}</span></div>
+      <div class="dash-rate" id="dashRate${i}">…</div>
+      <div class="dash-change" id="dashChange${i}"></div>
+      <canvas class="dash-spark" id="dashSpark${i}" width="240" height="64"></canvas>
+    </div>`).join('');
+
+  grid.querySelectorAll('.dash-expand').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const [f,t] = btn.dataset.key.split('-');
+      openChartModal(f,t);
+    });
+  });
+
+  grid.querySelectorAll('.dash-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      const [f,t] = card.dataset.key.split('-');
+      state.from = f; state.to = t;
+      localStorage.setItem('jbdiv_from', f);
+      localStorage.setItem('jbdiv_to', t);
+      renderCurrBtn('from'); renderCurrBtn('to');
+      updateFavStar();
+      convert();
+      loadHistory();
+      document.querySelector('.jb-input').scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  });
+
+  let anyOffline = false, anySuccess = false, latestTs = 0;
+  await Promise.all(pairs.map(async (key, i)=>{
+    const [f,t] = key.split('-');
+    const r = await fetchHistory(f, t, 7);
+    if(!r.live) anyOffline = true;
+    if(r.ts) latestTs = Math.max(latestTs, r.ts);
+    if(!r.points || r.points.length < 2){
+      $('dashRate'+i).textContent = 'Sin datos';
+      $('dashChange'+i).textContent = '';
+      return;
+    }
+    anySuccess = true;
+    const last = r.points[r.points.length-1].value;
+    const first = r.points[0].value;
+    const pct = ((last-first)/first)*100;
+    $('dashRate'+i).textContent = formatNum(last);
+    const chEl = $('dashChange'+i);
+    chEl.textContent = (pct>=0?'▲ ':'▼ ') + Math.abs(pct).toFixed(2) + '% · 7d';
+    chEl.className = 'dash-change ' + (pct>=0?'up':'down');
+    drawSparkline($('dashSpark'+i), r.points.map(p=>p.value));
+  }));
+  if(!anySuccess && !latestTs){
+    $('dashUpdated').innerHTML = 'sin datos · <a href="#" id="dashRetry" style="color:var(--jb-accent-1);font-weight:700;">reintentar</a>';
+    const retryLink = $('dashRetry');
+    if(retryLink) retryLink.addEventListener('click', (e)=>{ e.preventDefault(); dashLoadAll(); });
+  } else {
+    $('dashUpdated').textContent = anyOffline ? `sin conexión · ${timeAgo(latestTs||Date.now())}` : 'en vivo';
+  }
+}
+
+function drawSparkline(canvas, values){
+  const dpr = window.devicePixelRatio || 1;
+  const cssW = canvas.clientWidth || 120, cssH = 32;
+  canvas.width = cssW*dpr; canvas.height = cssH*dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,cssW,cssH);
+  if(values.length < 2) return;
+  const min = Math.min(...values), max = Math.max(...values), range = (max-min)||1;
+  const style = getComputedStyle(document.documentElement);
+  const c1 = style.getPropertyValue('--jb-accent-1').trim();
+  const c2 = style.getPropertyValue('--jb-accent-2').trim();
+  const grad = ctx.createLinearGradient(0,0,cssW,0);
+  grad.addColorStop(0,c1); grad.addColorStop(1,c2);
+  ctx.beginPath();
+  values.forEach((v,i)=>{
+    const x = (cssW * i/(values.length-1));
+    const y = cssH - ((v-min)/range)*cssH;
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = 2;
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+}
+
+// ---------- CHART ----------
+async function fetchHistoryRange(from, to, start, end, cacheKey){
+  const fmt = d => d.toISOString().slice(0,10);
+  try{
+    const res = await fetch(`https://api.frankfurter.dev/v1/${fmt(start)}..${fmt(end)}?base=${from}&symbols=${to}`, {cache: 'no-store'});
+    if(!res.ok) throw new Error('api');
+    const data = await res.json();
+    const points = Object.entries(data.rates)
+      .sort((a,b)=> a[0]<b[0]?-1:1)
+      .map(([date, rates])=>({date, value: rates[to]}));
+    cacheSet(cacheKey, {points});
+    return {points, live:true, ts: Date.now()};
+  }catch(err){
+    const cached = cacheGet(cacheKey);
+    if(cached) return {points: cached.data.points, live:false, ts: cached.ts};
+    return {points: null, live:false, ts:null};
+  }
+}
+
+async function fetchHistory(from, to, days){
+  const end = new Date();
+  const start = new Date();
+  start.setDate(end.getDate() - days);
+  return fetchHistoryRange(from, to, start, end, `hist_${from}_${to}_${days}`);
+}
+
+async function renderChartInto(pairFrom, pairTo, days, compareMode, canvas, rangeEl, legendEl){
+  rangeEl.textContent = 'Cargando…';
+  legendEl.textContent = '';
+  const r = await fetchHistory(pairFrom, pairTo, days);
+
+  let compareR = null;
+  if(compareMode !== 'none' && r.points && r.points.length > 1){
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - days);
+    let cStart, cEnd, label;
+    if(compareMode === 'prev'){
+      cEnd = new Date(start); cEnd.setDate(start.getDate() - 1);
+      cStart = new Date(cEnd); cStart.setDate(cEnd.getDate() - days);
+      label = 'periodo anterior';
+    } else {
+      cStart = new Date(start); cStart.setFullYear(start.getFullYear() - 1);
+      cEnd = new Date(end); cEnd.setFullYear(end.getFullYear() - 1);
+      label = 'mismo periodo, año pasado';
+    }
+    const cacheKey = `hist_${pairFrom}_${pairTo}_${compareMode}_${days}`;
+    compareR = await fetchHistoryRange(pairFrom, pairTo, cStart, cEnd, cacheKey);
+    compareR.label = label;
+  }
+
+  if(r.points && r.points.length > 1){
+    drawChart(canvas, r.points, compareR && compareR.points && compareR.points.length > 1 ? compareR.points : null);
+    const values = r.points.map(p=>p.value);
+    const min = Math.min(...values), max = Math.max(...values);
+    rangeEl.textContent = `${r.points[0].date} → ${r.points[r.points.length-1].date} · min ${formatNum(min)} · max ${formatNum(max)}`;
+
+    if(compareR && compareR.points && compareR.points.length > 1){
+      const curLast = values[values.length-1];
+      const cmpLast = compareR.points[compareR.points.length-1].value;
+      const pct = ((curLast-cmpLast)/cmpLast)*100;
+      legendEl.innerHTML = `<span style="color:var(--jb-accent-1)">●</span> actual &nbsp; <span style="opacity:.5">●</span> ${compareR.label} (${compareR.points[0].date} → ${compareR.points[compareR.points.length-1].date}) &nbsp; ${pct>=0?'▲':'▼'} ${Math.abs(pct).toFixed(2)}% vs ese cierre`;
+    }
+  } else {
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    rangeEl.textContent = 'Sin datos para este periodo.';
+  }
+  return r.points;
+}
+
+function openChartModal(from, to){
+  modal.from = from; modal.to = to; modal.days = 30; modal.compareMode = 'none';
+  $('modalTitle').textContent = `${FLAGS[from]||'💰'} ${from}→${to} ${FLAGS[to]||'💰'}`;
+  document.querySelectorAll('#modalPeriodPicker .p-btn').forEach(b=>b.classList.toggle('active', b.dataset.days==='30'));
+  document.querySelectorAll('#modalComparePicker .p-btn').forEach(b=>b.classList.toggle('active', b.dataset.cmp==='none'));
+  $('chartModalOverlay').classList.add('show');
+  loadModalChart();
+}
+function closeChartModal(){ $('chartModalOverlay').classList.remove('show'); }
+async function loadModalChart(){
+  await renderChartInto(modal.from, modal.to, modal.days, modal.compareMode, $('chartModalCanvas'), $('modalRange'), $('modalCompareLegend'));
+}
+
+async function loadHistory(){
+  state.history = await renderChartInto(state.from, state.to, state.days, state.compareMode, $('chart'), $('chartRange'), $('chartCompareLegend'));
+}
+
+function drawChart(canvas, points, comparePoints){
+  const dpr = window.devicePixelRatio || 1;
+  const cssW = canvas.clientWidth || 300;
+  const cssH = canvas.clientHeight || 150;
+  canvas.width = cssW * dpr;
+  canvas.height = cssH * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,cssW,cssH);
+  if(!points || points.length < 2) return;
+
+  const values = points.map(p=>p.value);
+  const cmpValues = comparePoints ? comparePoints.map(p=>p.value) : null;
+  const allValues = cmpValues ? values.concat(cmpValues) : values;
+  const min = Math.min(...allValues), max = Math.max(...allValues);
+  const range = (max - min) || 1;
+
+  const style = getComputedStyle(document.documentElement);
+  const c1 = style.getPropertyValue('--jb-accent-1').trim();
+  const c2 = style.getPropertyValue('--jb-accent-2').trim();
+  const c3 = style.getPropertyValue('--jb-text-2').trim();
+
+  // decide label precision/width based on magnitude
+  const decimals = max >= 100 ? 1 : max >= 1 ? 3 : 5;
+  const yLabel = v => v.toLocaleString('es-ES', {maximumFractionDigits: decimals, minimumFractionDigits: 0});
+  ctx.font = '10px -apple-system, sans-serif';
+  const labelW = Math.max(ctx.measureText(yLabel(max)).width, ctx.measureText(yLabel(min)).width);
+
+  const padL = labelW + 10, padR = 6, padT = 10, padB = 18;
+  const w = cssW - padL - padR, h = cssH - padT - padB;
+
+  const xyFor = (arr, i) => {
+    const x = padL + (w * i/(arr.length-1));
+    const y = padT + h - ((arr[i]-min)/range) * h;
+    return [x,y];
+  };
+
+  // horizontal gridlines + Y labels (min, mid, max)
+  [0, 0.5, 1].forEach(t=>{
+    const y = padT + h - t*h;
+    const val = min + t*range;
+    ctx.beginPath();
+    ctx.moveTo(padL, y);
+    ctx.lineTo(padL + w, y);
+    ctx.strokeStyle = c3;
+    ctx.globalAlpha = 0.15;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.globalAlpha = 0.7;
+    ctx.fillStyle = c3;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = t===0 ? 'bottom' : t===1 ? 'top' : 'middle';
+    ctx.fillText(yLabel(val), padL - 6, y);
+    ctx.globalAlpha = 1;
+  });
+
+  // X labels: start, middle, end date (short format)
+  const shortDate = d => { const p = d.split('-'); return `${p[2]}/${p[1]}`; };
+  ctx.fillStyle = c3;
+  ctx.globalAlpha = 0.7;
+  ctx.font = '10px -apple-system, sans-serif';
+  ctx.textBaseline = 'top';
+  ctx.textAlign = 'left';
+  ctx.fillText(shortDate(points[0].date), padL, padT + h + 4);
+  ctx.textAlign = 'center';
+  ctx.fillText(shortDate(points[Math.floor((points.length-1)/2)].date), padL + w/2, padT + h + 4);
+  ctx.textAlign = 'right';
+  ctx.fillText(shortDate(points[points.length-1].date), padL + w, padT + h + 4);
+  ctx.globalAlpha = 1;
+
+  // comparison line (drawn first, behind, muted + dashed)
+  if(cmpValues && cmpValues.length > 1){
+    ctx.beginPath();
+    cmpValues.forEach((v,i)=>{
+      const [x,y] = xyFor(cmpValues, i);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    });
+    ctx.strokeStyle = c3;
+    ctx.globalAlpha = 0.5;
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5,4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+  }
+
+  const xy = i => xyFor(values, i);
+
+  // area fill
+  const grad = ctx.createLinearGradient(0,0,0,cssH);
+  grad.addColorStop(0, c1 + '55');
+  grad.addColorStop(1, c1 + '00');
+  ctx.beginPath();
+  points.forEach((p,i)=>{
+    const [x,y] = xy(i);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.lineTo(padL+w, padT+h);
+  ctx.lineTo(padL, padT+h);
+  ctx.closePath();
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // line
+  const lineGrad = ctx.createLinearGradient(0,0,cssW,0);
+  lineGrad.addColorStop(0, c1);
+  lineGrad.addColorStop(1, c2);
+  ctx.beginPath();
+  points.forEach((p,i)=>{
+    const [x,y] = xy(i);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle = lineGrad;
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+
+  // last point dot
+  const [lx,ly] = xy(points.length-1);
+  ctx.beginPath();
+  ctx.arc(lx,ly,4,0,Math.PI*2);
+  ctx.fillStyle = c2;
+  ctx.fill();
+}
+
+
+// ---------- INIT ----------
+async function loadCurrencies(){
+  try{
+    const res = await fetch('https://api.frankfurter.dev/v1/currencies');
+    state.currencies = await res.json();
+  }catch(err){
+    state.currencies = {USD:'US Dollar',EUR:'Euro',BRL:'Brazilian Real',MXN:'Mexican Peso',DOP:'Dominican Peso',GBP:'British Pound'};
+  }
+  renderCurrBtn('from');
+  renderCurrBtn('to');
+}
+
+function bindEvents(){
+  $('fromBtn').addEventListener('click', ()=>openPicker('from'));
+  $('toBtn').addEventListener('click', ()=>openPicker('to'));
+  $('overlay').addEventListener('click', e=>{ if(e.target.id==='overlay') closePicker(); });
+  $('sheetSearch').addEventListener('input', e=>renderSheetList(e.target.value));
+  $('swapBtn').addEventListener('click', swap);
+  $('amountInput').addEventListener('input', scheduleConvert);
+  $('favStar').addEventListener('click', toggleFav);
+  $('periodPicker').addEventListener('click', e=>{
+    const btn = e.target.closest('.p-btn');
+    if(!btn) return;
+    document.querySelectorAll('#periodPicker .p-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    state.days = parseInt(btn.dataset.days);
+    loadHistory();
+  });
+  $('comparePicker').addEventListener('click', e=>{
+    const btn = e.target.closest('.p-btn');
+    if(!btn) return;
+    document.querySelectorAll('#comparePicker .p-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    state.compareMode = btn.dataset.cmp;
+    loadHistory();
+  });
+  $('expandMainChart').addEventListener('click', ()=> openChartModal(state.from, state.to));
+  $('modalClose').addEventListener('click', closeChartModal);
+  $('chartModalOverlay').addEventListener('click', e=>{ if(e.target.id==='chartModalOverlay') closeChartModal(); });
+  $('modalPeriodPicker').addEventListener('click', e=>{
+    const btn = e.target.closest('.p-btn');
+    if(!btn) return;
+    document.querySelectorAll('#modalPeriodPicker .p-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    modal.days = parseInt(btn.dataset.days);
+    loadModalChart();
+  });
+  $('modalComparePicker').addEventListener('click', e=>{
+    const btn = e.target.closest('.p-btn');
+    if(!btn) return;
+    document.querySelectorAll('#modalComparePicker .p-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    modal.compareMode = btn.dataset.cmp;
+    loadModalChart();
+  });
+}
+
+(async function init(){
+  initTheme();
+  bindEvents();
+  seedDefaultFavorites();
+  await loadCurrencies();
+  updateFavStar();
+  renderFavs();
+  dashLoadAll();
+  await convert();
+  await loadHistory();
+})();
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
