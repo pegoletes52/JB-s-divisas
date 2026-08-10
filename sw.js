@@ -1,4 +1,4 @@
-const CACHE = 'jbdivisas-v1';
+const CACHE = 'jbdivisas-v2';
 const SHELL = [
   './index.html',
   './manifest.json',
